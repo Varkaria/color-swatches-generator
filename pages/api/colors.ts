@@ -1,17 +1,6 @@
+import { RGB, HSL } from './types/colors';
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-type RGB = {
-  r: number;
-  g: number;
-  b: number;
-}
-
-type HSL = {
-  h: number;
-  s: number;
-  l: number;
-}
 
 const randomRGBColor = (): RGB => {
   const r: number = Math.floor(Math.random() * 256);

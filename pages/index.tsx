@@ -1,19 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-
-type Color = {
-  rgb: {
-    r: number;
-    g: number;
-    b: number;
-  };
-  hsl: {
-    h: number;
-    s: number;
-    l: number;
-  };
-};
+import { Color } from "./api/types/colors";
 
 const Home: NextPage = () => {
   const [data, setData] = useState([]);
@@ -40,10 +28,12 @@ const Home: NextPage = () => {
 
       <div className="flex items-center justify-center h-screen">
         <div className="space-y-8">
-          <div className="flex gap-3">
+          <div className="flex gap-3 transition-all" style={{
+            opacity: isLoading ? 0.5 : 1,
+          }}>
             {data &&
               data.map((color: Color, i: number) => (
-                <div key={i}>
+                <div key={i} className="max-w-xs">
                   <div
                     className="w-24 h-24 mx-auto transition-all"
                     style={{
