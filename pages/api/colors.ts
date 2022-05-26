@@ -1,7 +1,10 @@
 import { RGB, HSL } from './types/colors';
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+/**
+* generate a random color with RGB format
+* @return   {Object}        RGB color
+*/
 const randomRGBColor = (): RGB => {
   const r: number = Math.floor(Math.random() * 256);
   const g: number = Math.floor(Math.random() * 256);
@@ -9,6 +12,13 @@ const randomRGBColor = (): RGB => {
   return { r, g, b };
 }
 
+/**
+* convert a RGB color to HSL format
+* @param    {Number} r,     RGB red value
+* @param    {Number} g,     RGB green value
+* @param    {Number} b,     RGB blue value
+* @return   {Object}        HSL color
+*/
 const convertRGBtoHSL = (r: number, g: number, b: number): HSL => {
   r /= 255;
   g /= 255;
@@ -29,6 +39,16 @@ const convertRGBtoHSL = (r: number, g: number, b: number): HSL => {
   };
 };
 
+
+/**
+ * @api {get} /api/colors Get random colors
+ * @apiName GetRandomColors
+ * @apiGroup Colors
+ * @apiVersion 1.0.0
+ * @apiDescription Get random colors for [count] times
+ * @apiParam {Number} [count=5] Number of colors to generate
+ * @apiSuccess {Object[]} data Array of colors
+*/
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse
